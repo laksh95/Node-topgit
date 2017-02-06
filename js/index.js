@@ -41,11 +41,11 @@ $(function()
 			{
 				document.getElementById("list").innerHTML= "";
 				$.each(data, function(index,value)
-					{
-						var list=`<div class="result"><li class="media" style="list-style:none; padding:5px;"><img src="img/head.jpg" class="d-flex mr-3"  style="float:left;width:64px;height:64px;">`+
-						`<div class="media-body"><h5 class="content">`+data[index].name+`</h5><br /></div>`+`<h6 class="content-desc">`+data[index].language+' | '+data[index].description+`</h6></li></div>`;
-						$("#list").append(list);
-					});
+				{
+					var list=`<div class="result"><li class="media" style="list-style:none; padding:5px;"><img src="img/head.jpg" class="d-flex mr-3"  style="float:left;width:64px;height:64px;">`+
+					`<div class="media-body"><h5 class="content">`+data[index].name+`</h5><br /></div>`+`<h6 class="content-desc">`+data[index].language+' | '+data[index].description+`</h6></li></div>`;
+					$("#list").append(list);
+				});
 			}
 			else
 			{
@@ -63,7 +63,7 @@ $(function()
 				if(!flag)
 				{
 					document.getElementById("error").innerHTML="No Search Results";
-					// document.getElementById("list").value="";
+
 				}
 			}
 			
@@ -81,8 +81,6 @@ $(function()
 					// url:"https://api.github.com/search/repositories?q="+company+"&page=1&per_page=10",
 					success:function(response)
 					{
-						console.log("dsa");
-						console.log(JSON.parse(response));
 						document.getElementById("list").innerHTML= "";
 						data=JSON.parse(response);
 						$.each(data, function(index,value)
@@ -100,6 +98,7 @@ $(function()
 		}
 	});
 	$("[type=range]").change(function(){
+		console.log("slider")
 		var newval=$(this).val();
 		document.getElementById("search_list").innerHTML="";
 		document.getElementById("value").innerHTML=newval;
