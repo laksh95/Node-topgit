@@ -13,7 +13,7 @@ http.createServer(function(req,res)
 	var parts=param_url.parse(url,true);
 	switch(parts.pathname)
 	{
-		case '/':
+		case "/":
 
 			fs.readFile(__dirname + '/index.html','utf8',function(err,content){
 				if(err)
@@ -74,7 +74,7 @@ http.createServer(function(req,res)
 					console.log(err);
 				else
 				{
-					res.writeHead(200,{"Content-type":"text/css"});
+					res.writeHead(200,{"Content-type":"image/png"});
 					res.write(content);
 					res.end();
 				}
@@ -82,12 +82,12 @@ http.createServer(function(req,res)
 			break;
 		case "/img/head.jpg":
 
-			fs.readFile(__dirname+  "/img/head.jpg","utf8",function(err,content){
+			fs.readFile(__dirname+ "/img/head.jpg","utf8",function(err,content){
 				if(err)
 					console.log(err);
 				else
 				{
-					res.writeHead(200,{"Content-type":"text/png"});
+					res.writeHead(200,{"Content-type":"image/jpg"});
 					res.write(content);
 					res.end();
 				}
@@ -150,6 +150,9 @@ http.createServer(function(req,res)
 					}
 				});
 			}	
+			// console.log("sending");
+			// res.write("ds");
+			// res.end();
 			break;
 		default:
 			res.writeHead(404, {"Content-Type": "text/plain"});

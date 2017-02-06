@@ -8,25 +8,25 @@ $(function()
         visiblePages: 10,
         onPageClick: function (event, page)
         {
-        	company=$("#search_company").val();
-			$.ajax(
-			{
-				url:"https://localhost:3165",
-				success:function(response)
-				{
-					document.getElementById("list").innerHTML= "";
-					data=response.items;
-					$.each(data, function(index,value)
-					{
-						var list=`<div class="result"><li class="media" style="list-style:none; padding:5px;"><img src="img/head.jpg" class="d-flex mr-3"  style="float:left;width:64px;height:64px;">`+
-						`<div class="media-body"><h5 class="content">`+data[index].name+`</h5><br /></div>`+`<h6 class="content-desc">`+data[index].language+' | '+data[index].description+`</h6></li></div>`;
-						$("#list").append(list);
-					});						 
-				},
-				error: function(request,status,error){
-						console.log(error+"error message");
-				}
-			});
+   //      	company=$("#search_company").val();
+			// $.ajax(
+			// {
+			// 	url:"https://localhost:3165",
+			// 	success:function(response)
+			// 	{
+			// 		document.getElementById("list").innerHTML= "";
+			// 		data=response.items;
+			// 		$.each(data, function(index,value)
+			// 		{
+			// 			var list=`<div class="result"><li class="media" style="list-style:none; padding:5px;"><img src="img/head.jpg" class="d-flex mr-3"  style="float:left;width:64px;height:64px;">`+
+			// 			`<div class="media-body"><h5 class="content">`+data[index].name+`</h5><br /></div>`+`<h6 class="content-desc">`+data[index].language+' | '+data[index].description+`</h6></li></div>`;
+			// 			$("#list").append(list);
+			// 		});						 
+			// 	},
+			// 	error: function(request,status,error){
+			// 			console.log(error+"error message");
+			// 	}
+			// });
 		}
 	});
 	$('#search_name').keypress(function(event)
@@ -77,13 +77,14 @@ $(function()
 		{
 			$.ajax(
 				{
-					url:"https://localhost:3165/getRepo?company="+company,
+					url:"http://localhost:3165/getRepo?company="+company,
 					// url:"https://api.github.com/search/repositories?q="+company+"&page=1&per_page=10",
 					success:function(response)
 					{
+						console.log("dsa");
 						console.log(JSON.parse(response));
 						document.getElementById("list").innerHTML= "";
-						data=response;
+						data=JSON.parse(response);
 						$.each(data, function(index,value)
 						{
 							var list=`<div class="result"><li class="media" style="list-style:none; padding:5px;"><img src="img/head.jpg" class="d-flex mr-3"  style="float:left;width:64px;height:64px;">`+
