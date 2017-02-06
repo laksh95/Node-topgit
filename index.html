@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TopGit</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/jquery.twbsPagination.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/view.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+	<div id="header">
+		<img id="img_header" src="img/logo.png" style="margin-top: 6px;"/>
+		<h1 id="header_text">TopGit</h1>
+		<h4 id="follow_text">- finding the best github projects!</h4>
+		<fieldset id="box">
+			
+		</fieldset>
+	</div>
+	<div class="main_window">
+		<div id="on_search" style="height:100%;">
+			<input type="text" placeholder="Seach (by Company)" id="search_company">
+			<input type="text" placeholder="Seach (by language)" id="search_name">
+			<br/>
+			<label id="error"></label>
+<!-- 			<ul id="search_list">
+			</ul> -->
+		</div>
+		<div id="on_load">
+			<ul id="list">
+			</ul>
+		</div>
+		<div>
+			<ul id="pagination-demo" class="pagination-sm">
+			</ul>
+		</div>
+	</div>
+	<div id="filter">
+		<label id="min">0</label>
+		<div id="rangeBar">
+		
+			<input type="range" min="0" max="1000" id="stars" step="1" value="0"/><br />
+			
+			<label for="stars" id="value" style="margin:auto;"></label>
+		</div>		
+		<label id="max">1000</label>
+	</div>
+
+</body>
+</html>
