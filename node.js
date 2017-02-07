@@ -138,9 +138,7 @@ http.createServer(function(req,res)
 						var sendItems=[];
 						i=(page-1)*10;
 						for(;i<page*10;i++)
-						{	
 							sendItems.push(items[i]);
-						}
 						res.writeHead(200,{"Content-type":"text/plain"});
 						res.write(JSON.stringify(sendItems));
 						res.end();
@@ -148,9 +146,6 @@ http.createServer(function(req,res)
 				});
 			}	
 			break;
-		// case "/getPages":
-
-		// 	break;
 		default:
 			res.writeHead(404, {"Content-Type": "text/plain"});
     		res.write("404 Not found");
