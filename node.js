@@ -3,10 +3,6 @@ var fs = require('fs');
 var param_url=require('url');
 var query=require('querystring');
 var lodash=require('lodash');
-function getQuery(str)
-{
-	return str.company;
-}
 http.createServer(function(req,res)
 {
 	var url=req.url;
@@ -125,35 +121,38 @@ http.createServer(function(req,res)
 					var query_name=parts.query;
 					console.log("query_name");
 					console.log(query_name);
-					var query_value=getQuery(query_name);
+					var company=query_name.company;
+					var page=query_name.page;
 					var items=[];
-					// console.log(query_value);
 				fs.readFile(__dirname  +"/data.json","utf8",function(err,content){
 					if(err)
 						console.log(err);
 					else
 					{
 						var data=JSON.parse(content).items;
-						//console.log(data.length);
 						for(var i=0;i<data.length;i++)
 						{
-							if(lodash.includes(data[i].full_name,query_value))
+							if(lodash.includes(data[i].full_name,company))
 							{	
 								items.push(data[i]);
-								//console.log(data[i]);
 							}
 						}
+						var sendItems=[];
+						i=(page-1)*10;
+						for(;i<page*10;i++)
+						{	
+							sendItems.push(items[i]);
+						}
 						res.writeHead(200,{"Content-type":"text/plain"});
-						console.log(JSON.stringify(items));
-						res.write(JSON.stringify(items));
+						res.write(JSON.stringify(sendItems));
 						res.end();
 					}
 				});
 			}	
-			// console.log("sending");
-			// res.write("ds");
-			// res.end();
 			break;
+		// case "/getPages":
+
+		// 	break;
 		default:
 			res.writeHead(404, {"Content-Type": "text/plain"});
     		res.write("404 Not found");

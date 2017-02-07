@@ -1,0 +1,8 @@
+sudo npm install express
+var express=require('express')
+app=express.server()
+app.listen()
+app.use()
+app.static(path)
+
+
