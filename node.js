@@ -3,6 +3,20 @@ var fs = require('fs');
 var param_url=require('url');
 var query=require('querystring');
 var lodash=require('lodash');
+function loadFile(filename,type,res)
+{
+	console.log(filename);
+	fs.readFile(__dirname + filename,"utf8",function(err,content){
+		if(err)
+			console.log(err);
+		else
+		{
+			res.writeHead(200,{"Content-type":type});
+			res.write(content);
+			res.end();
+		}
+	});	
+}
 http.createServer(function(req,res)
 {
 	var url=req.url;
@@ -10,110 +24,28 @@ http.createServer(function(req,res)
 	switch(parts.pathname)
 	{
 		case "/":
-
-			fs.readFile(__dirname + '/index.html','utf8',function(err,content){
-				if(err)
-				{
-					console.log(err);
-				}
-				else
-				{
-					res.writeHead(200,{"Content-type":"text/html"});
-					res.write(content);
-					res.end();
-				}
-			});
+			loadFile("/index.html","text/html",res);
 			break;
 		case "/css/view.css":
-
-			fs.readFile(__dirname + "/css/view.css","utf8",function(err,content){
-				if(err)
-					console.log(err);
-				else
-				{
-					res.writeHead(200,{"Content-type":"text/css"});
-					res.write(content);
-					res.end();
-				}
-			});
+			loadFile("/css/view.css","text/css",res);
 			break;
 		case "/css/simplePagination.css":
-
-			fs.readFile(__dirname + "/css/simplePagination.css","utf8",function(err,content){
-				if(err)
-					console.log(err);
-				else
-				{
-					res.writeHead(200,{"Content-type":"text/css"});
-					res.write(content);
-					res.end();
-				}
-			});
+			loadFile("/css/simplePagination.css","text/css",res);
 			break;
 		case "/js/index.js":
-
-			fs.readFile(__dirname + "/js/index.js","utf8",function(err,content){
-				if(err)
-					console.log(err);
-				else
-				{
-					res.writeHead(200,{"Content-type":"text/javascript"});
-					res.write(content);
-					res.end();
-				}
-			});
-			break;
-		case "/img/logo.png":
-
-			fs.readFile(__dirname+  "/img/logo.png","utf8",function(err,content){
-				if(err)
-					console.log(err);
-				else
-				{
-					res.writeHead(200,{"Content-type":"image/png"});
-					res.write(content);
-					res.end();
-				}
-			});
-			break;
-		case "/img/head.jpg":
-
-			fs.readFile(__dirname+ "/img/head.jpg","utf8",function(err,content){
-				if(err)
-					console.log(err);
-				else
-				{
-					res.writeHead(200,{"Content-type":"image/jpg"});
-					res.write(content);
-					res.end();
-				}
-			});
+			loadFile("/js/index.js","text/javascript",res);
 			break;
 		case "/css/bootstrap.css":
-
-			fs.readFile(__dirname + "/css/bootstrap.css","utf8",function(err,content){
-				if(err)
-					console.log(err);
-				else
-				{
-					res.writeHead(200,{"Content-type":"text/css"});
-					res.write(content);
-					res.end();
-				}
-			});
+			loadFile("/css/bootstrap.css","text/css",res);
 			break;
 		case "/js/jquery.twbsPagination.js":
-
-			fs.readFile(__dirname + "/js/jquery.twbsPagination.js","utf8",function(err,content){
-				if(err)
-					console.log(err);
-				else
-				{
-					res.writeHead(200,{"Content-type":"text/javascript"});
-					res.write(content);
-					res.end();
-				}
-			});
+			loadFile("/js/jquery.twbsPagination.js","text/javascript",res);
+			break;
+		case "/img/logo.png":
+			loadFile("/img/logo.png","image/png",res);
+			break;
+		case "/img/head.jpg":
+			loadFile("/img/head.jpg","image/jpg",res);
 			break;
 		case "/getRepo":
 			if(parts.path!=null)
