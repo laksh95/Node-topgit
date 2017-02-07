@@ -106,7 +106,7 @@ $(function()
 	});
 	$("#stars").change(function(){
 		var newval=$(this).val();
-		document.getElementById("search_list").innerHTML="";
+		document.getElementById("list").innerHTML="";
 		document.getElementById("value").innerHTML=newval;
 		$.each(data, function(index,value)
 		{
@@ -116,7 +116,7 @@ $(function()
 				<img src="img/head.jpg" class="d-flex mr-3"  style="float:left;width:64px;height:64px;">`+								
 				`<div class="media-body"><h5 class="content">`+data[index].name+`</h5><br /></div>`+data[index].language+
 				`</li></div>`;
-				$("#search_list").append(slist);
+				$("#list").append(slist);
 			}
 		});
 	});
