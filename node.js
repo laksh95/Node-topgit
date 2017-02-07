@@ -119,8 +119,6 @@ http.createServer(function(req,res)
 			if(parts.path!=null)
 			{
 					var query_name=parts.query;
-					console.log("query_name");
-					console.log(query_name);
 					var company=query_name.company;
 					var page=query_name.page;
 					var items=[];
